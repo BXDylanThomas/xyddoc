@@ -1,0 +1,19 @@
+每天跑，判断是否是月末
+1。参数
+    传入 时间date，time，机构（多个，分割） （默认86）
+2.根据机构，查询的二级机构
+
+3.取数
+
+SELECT A.EDORNO, A.CONTNO, A.POLNO, A.LOANTYPE, A.LOANDATE, A.LEAVEMONEY, A.ACTUGETNO
+FROM LOLOAN A
+WHERE A.PAYOFFFLAG = '0'
+  AND A.LOANDATE < TO_DATE('missingValue', 'yyyy-MM-dd')
+  AND NOT EXISTS(
+        SELECT 1 FROM LOLOANTRACE K WHERE K.POLNO = A.POLNO AND K.CALDATE = TO_DATE('missingValue', 'yyyy-MM-dd'))
+  AND EXISTS(SELECT 1 FROM LCPOL B WHERE A.POLNO = B.POLNO AND B.APPFLAG = '1' AND B.MANAGECOM LIKE 'missingValue%')
+  AND NOT EXISTS(select 1 from lccont i where A.contno = i.contno and i.appflag = 4)
+
+4。循环处理
+   4.1 剩余贷款或者垫交金额求和
+

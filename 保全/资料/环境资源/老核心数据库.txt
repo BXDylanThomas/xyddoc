@@ -1,0 +1,11 @@
+online应用地址  http://10.0.22.161:9900
+online对应数据库
+#lis/lis2018dev
+LISDB_xinyace1=
+(DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST = 10.0.12.12)(PORT = 1520))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = lisdb)
+    )
+  )
